@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { useAuth } from "@/components/auth-provider"
-import { User, Package, Heart, Settings, Menu } from "lucide-react"
+import { User, Package, Heart, Settings, Menu } from 'lucide-react'
 
 export default function AccountLayout({ children }) {
   const { user } = useAuth()
