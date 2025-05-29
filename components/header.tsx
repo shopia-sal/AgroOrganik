@@ -14,14 +14,12 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { useCart } from "@/components/cart-provider"
 import { useAuth } from "@/components/auth-provider"
-import { getCategories } from "@/lib/data"
 import {
   Search,
   ShoppingCart,
   Menu,
   User,
   Leaf,
-  ChevronDown,
   Phone,
   Info,
   LogOut,
@@ -34,7 +32,6 @@ import {
 export default function Header() {
   const { cart } = useCart()
   const { user, logout } = useAuth()
-  const categories = getCategories()
   const [isScrolled, setIsScrolled] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false)
@@ -112,7 +109,7 @@ export default function Header() {
               </div>
               <div>
                 <span className="text-xl font-bold text-white">
-                  Agro<span className="text-green-400">Organik</span>
+                  BioFarm<span className="text-green-400">Store</span>
                 </span>
                 <span className="hidden md:block text-[10px] text-green-300 -mt-1">Produk Organik Terpercaya</span>
               </div>
@@ -127,46 +124,6 @@ export default function Header() {
                 Beranda
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full"></span>
               </Link>
-
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="link"
-                    className="relative px-3 py-2 text-sm font-medium h-auto text-white hover:text-green-300 transition-colors group"
-                  >
-                    <span className="flex items-center">
-                      Kategori
-                      <ChevronDown className="ml-1 h-4 w-4 opacity-70" />
-                    </span>
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full"></span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  align="center"
-                  className="w-56 bg-[#002200]/95 backdrop-blur-md border-green-900 text-white rounded-xl p-2 shadow-xl"
-                >
-                  {categories.map((category) => (
-                    <DropdownMenuItem
-                      key={category.id}
-                      asChild
-                      className="rounded-lg hover:bg-green-800/50 focus:bg-green-800/50 py-2"
-                    >
-                      <Link href={`/products?category=${category.id}`} className="flex items-center">
-                        <span className="h-7 w-7 rounded-full bg-green-900/50 flex items-center justify-center mr-2">
-                          {category.icon || <Leaf className="h-4 w-4 text-green-400" />}
-                        </span>
-                        {category.name}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                  <DropdownMenuSeparator className="bg-green-800/50 my-2" />
-                  <DropdownMenuItem asChild className="rounded-lg hover:bg-green-800/50 focus:bg-green-800/50">
-                    <Link href="/products" className="flex items-center justify-center text-green-400 font-medium">
-                      Lihat Semua Kategori
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
 
               <Link
                 href="/products"
@@ -216,7 +173,6 @@ export default function Header() {
               >
                 <Search className="h-5 w-5" />
               </Button>
-
 
               {/* Cart */}
               <Link href="/cart">
@@ -328,7 +284,7 @@ export default function Header() {
                       </div>
                       <div>
                         <span className="text-xl font-bold text-white">
-                          Agro<span className="text-green-400">Organik</span>
+                          BioFarm<span className="text-green-400">Store</span>
                         </span>
                         <span className="block text-[10px] text-green-300 -mt-1">Produk Organik Terpercaya</span>
                       </div>
@@ -396,25 +352,6 @@ export default function Header() {
                             <span>Hubungi Kami</span>
                           </Link>
                         </SheetClose>
-                      </nav>
-                    </div>
-
-                    <div className="grid gap-4">
-                      <h4 className="font-medium text-green-400 text-sm uppercase tracking-wider">Kategori</h4>
-                      <nav className="grid gap-2">
-                        {categories.map((category) => (
-                          <SheetClose asChild key={category.id}>
-                            <Link
-                              href={`/products?category=${category.id}`}
-                              className="flex items-center py-2 text-white hover:text-green-300 transition-colors"
-                            >
-                              <div className="w-8 h-8 rounded-full bg-green-900/50 flex items-center justify-center mr-3">
-                                {category.icon || <Leaf className="h-4 w-4 text-green-400" />}
-                              </div>
-                              <span>{category.name}</span>
-                            </Link>
-                          </SheetClose>
-                        ))}
                       </nav>
                     </div>
 
